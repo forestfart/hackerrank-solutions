@@ -1,0 +1,12 @@
+*.class
+*.iml
+*.xml
+*.jar
+*.bin
+*.lock
+*.html
+*.idx
+*.MF
+*.css
+*.js
+**/out/
