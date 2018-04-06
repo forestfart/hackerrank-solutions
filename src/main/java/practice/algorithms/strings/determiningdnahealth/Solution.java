@@ -13,7 +13,7 @@ public class Solution {
         return longestGen;
     }
 
-    public static int getHealthSum(int first, int last, StringBuilder d, String[] genes, int[] health) {
+    public static int getHealthSum(int first, int last, StringBuffer d, String[] genes, int[] health) {
         int healthSum = 0;
         int longestGen = findLongestGenLength(first, last, genes);
         boolean isFlagUp;
@@ -34,26 +34,41 @@ public class Solution {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileReader resource = new FileReader("src/main/resources/DeterminingDnaHealth.txt"); // Large file expected output is "118731899 118731899", medium: "3218660 11137051"
+        FileReader resource = new FileReader("src/main/resources/DeterminingDnaHealthMedium.txt"); // Large file expected output is "118731899 118731899", medium: "3218660 11137051"
         try {
             BufferedReader in = new BufferedReader(resource);
-            int n = Integer.parseInt(in.readLine());
-            String genesLine = in.readLine();
-            StringBuffer genesLineBuff = new StringBuffer(genesLine);
-            genesLineBuff.chars().spliterator().trySplit();
-            String[] genes = genesLine.split(" ");
-            String healthLine = in.readLine();
-            int[] health = Arrays.stream(healthLine.split(" ")).mapToInt(Integer::parseInt).toArray();
-            int s = Integer.parseInt(in.readLine());
+            StringTokenizer sTokenLine = new StringTokenizer(in.readLine());
+            int n = Integer.parseInt(sTokenLine.nextToken());
+            StringTokenizer genesLine = new StringTokenizer(in.readLine());
+            String[] genes = new String[n];
+            int index = 0;
+            while (genesLine.hasMoreTokens()) {
+                genes[index] = genesLine.nextToken();
+                index++;
+            }
+            StringTokenizer healthLine = new StringTokenizer(in.readLine());
+            //int[] health = Arrays.stream(healthLine.split(" ")).mapToInt(Integer::parseInt).toArray();
+            index = 0;
+            int[] health = new int[n];
+            while (healthLine.hasMoreTokens()) {
+                health[index] = Integer.parseInt(healthLine.nextToken());
+                index++;
+            }
+
+            StringTokenizer sLine = new StringTokenizer(in.readLine());
+            int s = Integer.parseInt(sLine.nextToken());
             List<Integer> dnaHealthList = new ArrayList<>();
             //System.out.println(n + " " + s);
             //System.out.println("genes :" + genesLine);
             //System.out.println("healthLine: " + healthLine);
             for (int a0 = 0; a0 < s; a0++) {
-                String d = new String(in.readLine());
-                String[] splitLine = d.split(" ");
+                StringTokenizer dLine = new StringTokenizer(in.readLine());
+                List<StringBuffer> splitLine = new ArrayList<>();
+                while (dLine.hasMoreTokens()) {
+                    splitLine.add(new StringBuffer(dLine.nextToken()));
+                }
                 //System.out.printf("first %d, last %d; ", Integer.parseInt(splitLine[0]), Integer.parseInt(splitLine[1]));
-                dnaHealthList.add(getHealthSum(Integer.parseInt(splitLine[0]), Integer.parseInt(splitLine[1]), new StringBuilder(d), genes, health));
+                dnaHealthList.add(getHealthSum(Integer.parseInt(splitLine.get(0).toString()), Integer.parseInt(splitLine.get(1).toString()), splitLine.get(2), genes, health));
             }
             in.close();
             System.out.printf("%d %d", Collections.min(dnaHealthList), Collections.max(dnaHealthList));
