@@ -34,31 +34,29 @@ public class Solution {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        int n;
-        String[] genes;
-        int[] health;
-        File resource = new File("src/main/resources/DeterminingDnaHealth.txt");
+        FileReader resource = new FileReader("src/main/resources/DeterminingDnaHealth.txt"); // Large file expected output is "118731899 118731899", medium: "3218660 11137051"
         try {
-            Scanner in = new Scanner(resource);
-            n = in.nextInt();
-            genes = new String[n];
-            for (int genes_i = 0; genes_i < n; genes_i++) {
-                genes[genes_i] = in.next();
-            }
-            health = new int[n];
-            for (int health_i = 0; health_i < n; health_i++) {
-                health[health_i] = in.nextInt();
-            }
-            int s = in.nextInt();
-            List<Integer> dnaList = new ArrayList<>();
+            BufferedReader in = new BufferedReader(resource);
+            int n = Integer.parseInt(in.readLine());
+            String genesLine = in.readLine();
+            StringBuffer genesLineBuff = new StringBuffer(genesLine);
+            genesLineBuff.chars().spliterator().trySplit();
+            String[] genes = genesLine.split(" ");
+            String healthLine = in.readLine();
+            int[] health = Arrays.stream(healthLine.split(" ")).mapToInt(Integer::parseInt).toArray();
+            int s = Integer.parseInt(in.readLine());
+            List<Integer> dnaHealthList = new ArrayList<>();
+            //System.out.println(n + " " + s);
+            //System.out.println("genes :" + genesLine);
+            //System.out.println("healthLine: " + healthLine);
             for (int a0 = 0; a0 < s; a0++) {
-                int first = in.nextInt();
-                int last = in.nextInt();
-                StringBuilder d = new StringBuilder(in.next());
-                dnaList.add(getHealthSum(first, last, d, genes, health));
+                String d = new String(in.readLine());
+                String[] splitLine = d.split(" ");
+                //System.out.printf("first %d, last %d; ", Integer.parseInt(splitLine[0]), Integer.parseInt(splitLine[1]));
+                dnaHealthList.add(getHealthSum(Integer.parseInt(splitLine[0]), Integer.parseInt(splitLine[1]), new StringBuilder(d), genes, health));
             }
             in.close();
-            System.out.printf("%d %d", Collections.min(dnaList), Collections.max(dnaList));
+            System.out.printf("%d %d", Collections.min(dnaHealthList), Collections.max(dnaHealthList));
         } catch (Exception e) {
             System.out.println(e);
         }
