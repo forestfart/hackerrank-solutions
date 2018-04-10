@@ -3,9 +3,22 @@ package practice.algorithms.strings.determiningdnahealth;
 import java.io.*;
 import java.util.*;
 
-public class Solution {
+class HealthCalculator extends Thread {
+    private static int first, last, healthSum;
+    private static StringBuffer d;
+    private static String[] genes;
+    private static volatile int[] health;
 
-    public static int findLongestGenLength (int first, int last, String[] genes) {
+    HealthCalculator(int first, int last, StringBuffer d, String[] genes, int[] health, ThreadGroup tg, String name) {
+        super(tg,name);
+        this.first = first;
+        this.last = last;
+        this.d = d;
+        this.genes = genes;
+        this.health = health;
+    }
+
+    public int findLongestGenLength(int first, int last, String[] genes) {
         int longestGen = 0;
         for (int i = first; i < last; i++) {
             if (genes[i].length() > longestGen) longestGen = genes[i].length();
@@ -13,8 +26,8 @@ public class Solution {
         return longestGen;
     }
 
-    public static int getHealthSum(int first, int last, StringBuffer d, String[] genes, int[] health) {
-        int healthSum = 0;
+    public void run() {
+        healthSum = 0;
         int longestGen = findLongestGenLength(first, last, genes);
         boolean isFlagUp;
         for (int dIndex = 0; dIndex < d.length(); dIndex++) {
@@ -30,11 +43,20 @@ public class Solution {
                 }
             }
         }
+    }
+
+    public int getHealthSum() {
         return healthSum;
     }
 
+}
+
+public class Solution {
+
     public static void main(String[] args) throws FileNotFoundException {
+        long startMillis = System.currentTimeMillis(); // On tokenizer without threads: small: 0026ms medium: 0150ms large: ???
         FileReader resource = new FileReader("src/main/resources/DeterminingDnaHealthMedium.txt"); // Large file expected output is "118731899 118731899", medium: "3218660 11137051"
+        ThreadGroup tg = new ThreadGroup("main");
         try {
             BufferedReader in = new BufferedReader(resource);
             StringTokenizer sTokenLine = new StringTokenizer(in.readLine());
@@ -47,33 +69,41 @@ public class Solution {
                 index++;
             }
             StringTokenizer healthLine = new StringTokenizer(in.readLine());
-            //int[] health = Arrays.stream(healthLine.split(" ")).mapToInt(Integer::parseInt).toArray();
             index = 0;
             int[] health = new int[n];
             while (healthLine.hasMoreTokens()) {
                 health[index] = Integer.parseInt(healthLine.nextToken());
                 index++;
             }
-
             StringTokenizer sLine = new StringTokenizer(in.readLine());
             int s = Integer.parseInt(sLine.nextToken());
             List<Integer> dnaHealthList = new ArrayList<>();
-            //System.out.println(n + " " + s);
-            //System.out.println("genes :" + genesLine);
-            //System.out.println("healthLine: " + healthLine);
             for (int a0 = 0; a0 < s; a0++) {
                 StringTokenizer dLine = new StringTokenizer(in.readLine());
                 List<StringBuffer> splitLine = new ArrayList<>();
                 while (dLine.hasMoreTokens()) {
                     splitLine.add(new StringBuffer(dLine.nextToken()));
                 }
-                //System.out.printf("first %d, last %d; ", Integer.parseInt(splitLine[0]), Integer.parseInt(splitLine[1]));
-                dnaHealthList.add(getHealthSum(Integer.parseInt(splitLine.get(0).toString()), Integer.parseInt(splitLine.get(1).toString()), splitLine.get(2), genes, health));
+                HealthCalculator healthCalculator = new HealthCalculator(Integer.parseInt(splitLine.get(0).toString()), Integer.parseInt(splitLine.get(1).toString()), splitLine.get(2), genes, health, tg, "healthCalc"+a0);
+                healthCalculator.start();
+
+                while(tg.activeCount()>0)  // wait for threads to finish
+                {
+                    try { Thread.sleep(0); }
+                    catch (InterruptedException e) { e.printStackTrace(); }
+                }
+                dnaHealthList.add(healthCalculator.getHealthSum());
             }
             in.close();
             System.out.printf("%d %d", Collections.min(dnaHealthList), Collections.max(dnaHealthList));
         } catch (Exception e) {
             System.out.println(e);
         }
+        long endMillis = System.currentTimeMillis();
+        long milliseconds = (endMillis-startMillis);
+        long minutes = milliseconds / 60000;
+        long seconds = milliseconds / 1000 - (minutes * 60);
+        milliseconds =  milliseconds % 1000;
+        System.out.println(String.format("\nElapsed time: %d min %d sec %d ms", minutes, seconds, milliseconds));
     }
 }
