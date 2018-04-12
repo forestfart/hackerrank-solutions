@@ -4,20 +4,55 @@ import java.io.*;
 import java.util.*;
 
 class TrieNode {
-    private char character;
-    private int value;
-    private boolean isWord;
-    private List<TrieNode> children = new LinkedList<>();
+    private final char character;
+    private List<TrieNode> children = new ArrayList<>();
+    private boolean isGen;
+    private int healthValue;
 
-    public TrieNode(char character, int value, boolean isWord, TrieNode children) {
+    public TrieNode(final char character, boolean isGen, int healthValue) {
         this.character = character;
-        this.value = value;
-        this.isWord = isWord;
-        this.children.add(children);
+        this.isGen = isGen;
+        this.healthValue = healthValue;
     }
 
-    public int getValue() {
-        return value;
+    public TrieNode(final char character) {
+        this.character = character;
+        this.isGen = false;
+    }
+
+    public void addChild(TrieNode trieNode) {
+        children.add(trieNode);
+    }
+
+    public void addHealthValue(int healthValue) {
+        this.healthValue += healthValue;
+    }
+
+    public List<TrieNode> getChildren() {
+        return children;
+    }
+
+    public boolean isGen() {
+        return isGen;
+    }
+
+    public Optional<TrieNode> getChild(char character) {
+        return children.stream().filter(child -> child.getCharacter() == character).findFirst();
+    }
+
+    public char getCharacter() {
+        return character;
+    }
+
+    public int getHealthValue() {
+        return healthValue;
+    }
+
+    public void printTrie(TrieNode trie) {
+        for (TrieNode element : trie.getChildren()) {
+            System.out.printf("%c %b %d\n", element.getCharacter(), element.isGen(), element.getHealthValue());
+            if (element.getChildren().size() != 0) printTrie(element);
+        }
     }
 }
 
@@ -40,20 +75,34 @@ public class Solution {
 
             String gen, dna;
             int health, first, last;
-            TrieNode trieNode;
+            TrieNode trie = new TrieNode(' ');
+            TrieNode startPoint = trie;
             boolean isWord;
+            TrieNode child;
 
             // create Trie node
             while(genesLine.hasMoreTokens()) {
                 gen = genesLine.nextToken();
                 health = Integer.parseInt(healthLine.nextToken());
                 for (int index = 0; index < gen.length(); index++) {
-                    if (index == gen.length()) isWord = true;
-                    else isWord = false;
-                    trieNode = new TrieNode(gen.charAt(index), health, isWord, null);
-                    // to do
+                    child = trie.getChild(gen.charAt(index)).orElse(null);
+                    if (child == null) {
+                        if (index == gen.length()-1) {
+                            child = new TrieNode(gen.charAt(index), true, health);
+                        } else {
+                            child = new TrieNode(gen.charAt(index));
+                        }
+                        trie.addChild(child);
+                    } else if (index == gen.length()-1) {
+                        child.addHealthValue(health);
+                    }
+                    trie = child;
                 }
+                trie = startPoint;
             }
+
+            trie.printTrie(startPoint);
+
 
             List<Integer> dnaHealthList = new ArrayList<>();
 
