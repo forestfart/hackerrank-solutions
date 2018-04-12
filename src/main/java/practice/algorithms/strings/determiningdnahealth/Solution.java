@@ -8,6 +8,7 @@ class TrieNode {
     private List<TrieNode> children = new ArrayList<>();
     private boolean isGen;
     private int healthValue;
+    private TrieNode failNode;
 
     public TrieNode(final char character, boolean isGen, int healthValue) {
         this.character = character;
@@ -28,8 +29,8 @@ class TrieNode {
         this.healthValue += healthValue;
     }
 
-    public List<TrieNode> getChildren() {
-        return children;
+    public void setFailNode(TrieNode failNode) {
+        this.failNode = failNode;
     }
 
     public boolean isGen() {
@@ -48,6 +49,14 @@ class TrieNode {
         return healthValue;
     }
 
+    public List<TrieNode> getChildren() {
+        return children;
+    }
+
+    public TrieNode getFailNode() {
+        return failNode;
+    }
+
     public void printTrie(TrieNode trie) {
         for (TrieNode element : trie.getChildren()) {
             System.out.printf("%c %b %d\n", element.getCharacter(), element.isGen(), element.getHealthValue());
@@ -57,6 +66,19 @@ class TrieNode {
 }
 
 public class Solution {
+
+    private static void createFailNodes(final TrieNode trie) {
+        // to do
+    }
+
+    private static void listGensFromTrie(TrieNode trieRoot, TrieNode trie, StringBuilder prefix) {
+        for (TrieNode element : trie.getChildren()) {
+            if (trie == trieRoot) prefix = new StringBuilder();
+            prefix.append(element.getCharacter());
+            if (element.isGen()) System.out.printf("%s \n", prefix);
+            if (element.getChildren().size() != 0) listGensFromTrie(trieRoot, element, prefix);
+        }
+    }
 
     public static void main(String[] args) throws FileNotFoundException {
         long startMillis = System.currentTimeMillis(); // On tokenizer without threads: small: 0026ms medium: 0150ms large: ???
@@ -76,7 +98,7 @@ public class Solution {
             String gen, dna;
             int health, first, last;
             TrieNode trie = new TrieNode(' ');
-            TrieNode startPoint = trie;
+            TrieNode trieRoot = trie;
             boolean isWord;
             TrieNode child;
 
@@ -98,26 +120,34 @@ public class Solution {
                     }
                     trie = child;
                 }
-                trie = startPoint;
+                trie = trieRoot;
             }
+            trie.printTrie(trieRoot);
+            listGensFromTrie(trieRoot, trieRoot, null);
+            createFailNodes(trieRoot);
 
-            trie.printTrie(startPoint);
-
-
+            // ongoing - calculate health
             List<Integer> dnaHealthList = new ArrayList<>();
-
             for (int a0 = 0; a0 < s; a0++) {
+                health = 0;
                 StringTokenizer dnaLine = new StringTokenizer(in.readLine());
                 first = Integer.parseInt(dnaLine.nextToken());
                 last = Integer.parseInt(dnaLine.nextToken());
                 dna = dnaLine.nextToken();
+
+                for (int i = 0; i < dna.length(); i++) {
+                    child = trie.getChild(dna.charAt(i)).orElse(null);
+                    if (child != null) {
+                        if (child.isGen()) {
+                            health += child.getHealthValue();
+                        } else {
+                            trie = child;
+                        }
+                    } else {} //to do
+                }
             }
-
-            // to do
-
-
             in.close();
-            System.out.printf("%d %d", Collections.min(dnaHealthList), Collections.max(dnaHealthList));
+            //System.out.printf("%d %d", Collections.min(dnaHealthList), Collections.max(dnaHealthList));
         } catch (Exception e) {
             System.out.println(e);
         }
