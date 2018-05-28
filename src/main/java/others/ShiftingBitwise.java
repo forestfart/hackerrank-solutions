@@ -3,6 +3,7 @@ package others;
 public class ShiftingBitwise {
 
     public static void main (String[] args) {
+        // shifting bitwise is 10-20 times faster that dividing/multiplying!
         System.out.println(((-3 >> 1) == (-3 /2))); // proof it does not always divide by 2
         System.out.println((-3>>1));        // -2
         System.out.println(Integer.toBinaryString(-3>>1));
