@@ -7,9 +7,11 @@
 
 
 
-|         subdomain       |                                                    challenge                                                        | score |                                                                                     solution                                                                                 |               status            |
-|:-----------------------:|:-------------------------------------------------------------------------------------------------------------------:|:-----:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------:|
-|  Practice > Algorithms  | [The Full Counting Sort](https://www.hackerrank.com/challenges/countingsort4/problem)                               |   40  | [Solution.java](https://github.com/forestfart/hackerrank-solutions/blob/master/src/main/java/practice/algorithms/sorting/thefullcountingsort/Solution.java)                  |             complete!           |
-|  Practice > Algorithms  | [Determining DNA Health](https://www.hackerrank.com/challenges/determining-dna-health/problem)                      |   50  | [Solution.java](https://github.com/forestfart/hackerrank-solutions/blob/master/src/main/java/practice/algorithms/strings/determiningdnahealth/Solution.java)                 |       complete! (not by me)     |
+|         subdomain       |                                                    challenge                                                        | score |                                                                                     solution                                                                                    |               status            |
+|:-----------------------:|:-------------------------------------------------------------------------------------------------------------------:|:-----:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------:|
+|  Practice > Algorithms  | [The Full Counting Sort](https://www.hackerrank.com/challenges/countingsort4/problem)                               |   40  | [Solution.java](https://github.com/forestfart/hackerrank-solutions/blob/master/src/main/java/practice/algorithms/sorting/thefullcountingsort/Solution.java)                     |             complete!           |
+|  Practice > Algorithms  | [Determining DNA Health](https://www.hackerrank.com/challenges/determining-dna-health/problem)                      |   50  | [Solution.java](https://github.com/forestfart/hackerrank-solutions/blob/master/src/main/java/practice/algorithms/strings/determiningdnahealth/Solution.java)                    |       complete! (not by me)     |
+|  Practice > Algorithms  | [Forming a Magic Square](https://www.hackerrank.com/challenges/magic-square-forming/problem)                        |   20  | [Solution.java](https://github.com/forestfart/hackerrank-solutions/blob/master/src/main/java/practice/algorithms/algorithms.implementation.formingamagicsquare/Solution.java)   |             complete!           |
 
- more is comming soon..
+
+ more are comming..
