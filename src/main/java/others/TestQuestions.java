@@ -42,6 +42,10 @@ public class TestQuestions {
 
     public static void main(String[] args) throws IOException {
 
+        // It's called the conditional operator.
+        // Many people (erroneously) call it the ternary operator, because it's the only ternary (three-argument) operator in Java, C, C++, and probably many other languages.
+        // But theoretically there could be another ternary operator, whereas there can only be one conditional operator.
+
         String name = "Hello World!";
         name = (name =="Hello World!") ? name.replace("Hello", "Hi") : name;
 
