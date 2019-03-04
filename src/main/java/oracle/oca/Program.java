@@ -5,7 +5,7 @@ import static java.lang.System.*;
 import java.io.IOException;
 
 public class Program {
-
+    int ddd = 10;
     static int _6 = 6;
     {
         out.println("Block");
@@ -21,7 +21,7 @@ public class Program {
 
     static void dolt() throws IOException, ClassNotFoundException {
         String s = "";
-        for (int x = 10, y = 6; x-- > y; ) {
+        for (int x = 017, y = 6; x-- > y; ) {
             continue;
         }
         for (int x = 10, y = 6; x > y; out.println(x--)) {
@@ -29,6 +29,11 @@ public class Program {
             out.println(Program._6);
         }
         out.println("works! s = " + s);
+
+        Double ii = 10.0;
+        out.println("comparing: " + (new Integer(10).equals(ii)));
+        out.println("comparing: " + (ii == 10));
+        out.println("comparing: " + (ii == 10));
 
         loop:
         for (; ; ) {

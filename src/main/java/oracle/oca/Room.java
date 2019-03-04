@@ -4,12 +4,19 @@ import java.time.LocalDate;
 
 interface FourWalls {
     default void methodCommon() {
-        LocalDate date = LocalDate.of(2015,3,26);
+        LocalDate date = LocalDate.of(2015, 3, 26);
         System.out.println(date);
     }
 }
 
 abstract class House {
+    public House() {
+        this("cat in it! woohoo!");
+    }
+
+    public House(String s) {
+        System.out.println(s);
+    }
 
     abstract void methodChildClass();
 
@@ -21,7 +28,12 @@ abstract class House {
 
 class Room extends House implements FourWalls {
 
-    public static void main(String[] args){
+    public Room() {
+        super();
+    }
+
+    public static void main(String[] args) {
+
         Room room = new Room();
         room.methodParentClass();
     }
