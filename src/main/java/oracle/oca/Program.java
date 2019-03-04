@@ -21,6 +21,7 @@ public class Program {
 
     static void dolt() throws IOException, ClassNotFoundException {
         String s = "";
+        int[] ints = new int[12];
         for (int x = 017, y = 6; x-- > y; ) {
             continue;
         }
