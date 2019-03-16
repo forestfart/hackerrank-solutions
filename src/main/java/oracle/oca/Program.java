@@ -30,6 +30,7 @@ public class Program {
         int ooo;
         int[] ints = new int[12];
         ArrayList arrayList = new ArrayList();
+        arrayList.add(1);
         arrayList.set(0, new LocalDateTimeStringConverter());
         arrayList.add(1, new Integer(4));
         for (int x = 017, y = 6; x-- > y; ) {
