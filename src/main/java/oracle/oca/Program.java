@@ -27,7 +27,7 @@ public class Program {
 
     static void dolt() throws IOException, ClassNotFoundException {
         String s = "";
-        int ooo;
+        final int ooo;
         int[] ints = new int[12];
         ArrayList arrayList = new ArrayList();
         arrayList.add(1);
