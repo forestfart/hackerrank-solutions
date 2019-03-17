@@ -12,17 +12,20 @@ public class Program {
         out.println("Static");
     }
 
-    static int _6 = 6;
+    static int $ = 6;
+    static int _6 = 3;
     {
         out.println("Block");
         ddd = 43;
-        ggg = 3;
+        ggg = 5;
     }
     int ddd = 10;
     static int ggg; // if final -> compilation error
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         new Program().dolt();
+        int $_ = 3;
+        out.println($_);
     }
 
     static void dolt() throws IOException, ClassNotFoundException {
