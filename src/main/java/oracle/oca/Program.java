@@ -14,11 +14,13 @@ public class Program {
 
     static int $ = 6;
     static int _6 = 3;
+
     {
         out.println("Block");
         ddd = 43;
         ggg = 5;
     }
+
     int ddd = 10;
     static int ggg; // if final -> compilation error
 
@@ -48,7 +50,7 @@ public class Program {
 
         ooo = 2;
         out.print(ooo);
-        double dasdf = 10/3;
+        double dasdf = 10 / 3;
         out.println(" Divideee in floting context:  " + dasdf);
 
         Double ii = 10.0;
@@ -62,16 +64,33 @@ public class Program {
         for (; ; ) {
             break loop;
         }
-        out.println("" + (true^false) + " bitwise compliment of 6 is " + ~_6);
+        out.println("" + (true ^ false) + " bitwise compliment of 6 is " + ~_6);
 
-        for (int dx = 0; dx<5; out.println(dx), dx++) {
+        for (int dx = 0; dx < 5; out.println(dx), dx++) {
             out.println("looping: " + dx);
-            int sss =1;
+            int sss = 1;
             sss++;
             out.print(sss);
         }
-        double[] dou = {1,3.2,3,2.0};
+        double[] dou = {1, 3.2, 3, 2.0};
         out.println(dou[2] + dou[1]);
+
+        final int ggg = 4;
+
+        for (int dd = 2; dd < 10; dd++) {
+            switch (dd) {
+                case 2:
+                    out.println("switch 2 passed");
+                    break;
+                case ggg:
+                    out.println("switch 4 passed");
+            }
+        }
+
+        double a = 1.0;
+        long b = 12;
+
+        boolean dd = a == b;  // condition always false
 
     }
 }

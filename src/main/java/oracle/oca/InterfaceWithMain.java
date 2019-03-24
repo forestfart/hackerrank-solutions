@@ -28,6 +28,7 @@ public class InterfaceWithMain {
 
     public void BigLetterMethod() {
         System.out.println("method works!");
+        throw new RuntimeException();
     }
 
     public static void main(String args[]) {
@@ -42,11 +43,9 @@ public class InterfaceWithMain {
 
     }
 
-    interface Move {
-        Long l = 3L;
-        int value = 15;
+}
 
-
+class it {
         public static void main(String[] args) {
             System.out.println("Move");
             Double d = 10 / 0.0;
@@ -65,6 +64,15 @@ public class InterfaceWithMain {
 
         public static void print() {
         }
-    }
 
+}
+
+abstract interface Move {
+    Long l = 3L;
+    int value = 15;
+
+    static void print() {
+
+
+    }
 }
