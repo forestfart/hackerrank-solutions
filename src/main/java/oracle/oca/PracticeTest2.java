@@ -20,6 +20,12 @@ public class PracticeTest2 {
         float i = 10.0f / 0;
         System.out.println(i);
 
+        Double j = 10.0 / 0.0;
+        System.out.println(j.isInfinite());
+
+        Float k = 10.0F / 0;
+        System.out.println(k.isInfinite());
+
         // --> all prints "Infinity"
     }
 }
