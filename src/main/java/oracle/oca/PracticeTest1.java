@@ -1,6 +1,6 @@
 package oracle.oca;
 
-public class OkClass {
+public class PracticeTest1 {
 
     static String o = "";
 
