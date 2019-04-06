@@ -14,7 +14,7 @@ public class InterfaceWithMain {
         if (true)
             if (true) ;
             else x = 2;
-        else ;
+        else if(true);
     }
 
     Double dddd;

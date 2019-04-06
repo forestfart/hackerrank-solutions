@@ -4,7 +4,7 @@ import static java.lang.System.out;
 
 public class Whizlab {
 
-    public static void main(String[] args) {
+    public final static void main(String[] args) {
         out.println(Speed.FASTER == Speed.FAST);
         out.println(Speed.SLOW == Speed.SLOW);
         out.println(Speed.SLOW == Speed.SAME);
