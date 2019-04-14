@@ -32,9 +32,16 @@ class PractiseTest5 {
 
         int octal = 012;
         System.out.println("octal = " + octal);
-        System.out.println(d);
+        System.out.println(false);
         System.out.println(Moonish.s);
         System.out.println(Moonish.gf);
+
+        Moonish moonish = new Moonish() {
+            @Override
+            public int hashCode() {
+                return super.hashCode();
+            }
+        };
     }
 }
 
@@ -42,3 +49,4 @@ interface Moonish {
     String s = "moonish df";
     static String gf = "moonish l"; //<<- redundant!
 }
+
