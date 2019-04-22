@@ -19,6 +19,12 @@ public class Program {
         out.println("Block");
         ddd = 43;
         ggg = 5;
+        byte b = 20;
+        short s = 30000;
+        long l = 2000000000000000000l;
+        float g = 4;
+        float hj = b + s + l + g;
+        out.println("--->>>>>>>>>>>>> strzala rowna sie:" + hj);
     }
 
     int ddd = 10;
