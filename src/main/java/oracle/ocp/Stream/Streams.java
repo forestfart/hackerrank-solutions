@@ -1,4 +1,4 @@
-package oracle.ocp;
+package oracle.ocp.Stream;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +22,14 @@ class Streams2 {
         System.out.println(stream.peek(System.out::print).anyMatch(x -> x > 10));
     }
 }
+
 class Streams3 {
     public static void main(String[] args) {
         Stream list = Stream.of("ABC", "aBB", "AbCC", "ab", "acC");
         Object map = list.collect(Collectors.partitioningBy((String s) -> s.startsWith("ab")));
         System.out.println(map);
     }
+
+
 
 }
