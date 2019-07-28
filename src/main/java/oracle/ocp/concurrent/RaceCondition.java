@@ -5,11 +5,9 @@ class Counter {
 }
 
 class UseCounter implements Runnable {
-    private void increment() {
-        synchronized (this) {
-            Counter.count++;
-            System.out.printf("Counter is: %d, thread: %s\n", Counter.count, Thread.currentThread().getName());
-        }
+    private synchronized void increment() {
+        Counter.count++;
+        System.out.printf("Counter is: %d, thread: %s\n", Counter.count, Thread.currentThread().getName());
     }
 
     @Override
