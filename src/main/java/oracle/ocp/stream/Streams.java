@@ -1,4 +1,4 @@
-package oracle.ocp.Stream;
+package oracle.ocp.stream;
 
 import java.util.ArrayList;
 import java.util.List;
