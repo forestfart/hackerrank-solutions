@@ -19,11 +19,11 @@ public class ForkJoinTest {
 
         public Long compute() {
             if ((to - from) <= N / numberOfThreads) {
-                long localSum = 0;
+                long localSum = 0L;
                 for (long i = from; i <= to; i++) {
                     localSum += i;
                 }
-                //long localSum = LongStream.range(from, to+1).reduce(Long::sum).orElse(0); // <<-- appears to be less efficient here
+                //Long localSum = LongStream.range(from, to+1).reduce(Long::sum).getAsLong(); // <<-- appears to be less efficient here
                 System.out.printf("\t Summing of value range %d to %d is %d %n", from, to, localSum);
                 return localSum;
             } else {
