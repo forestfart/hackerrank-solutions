@@ -2,6 +2,7 @@ package oracle.ocp.stream;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -29,7 +30,14 @@ class Streams3 {
         Object map = list.collect(Collectors.partitioningBy((String s) -> s.startsWith("ab")));
         System.out.println(map);
     }
+}
 
+class StreamCheck4 {
+    public static void main(String args[]) {
+        Stream<String> list = Stream.of("ABC", "aBB", "AbCC", "ab", "acC");
+        Map map = list.collect(Collectors.partitioningBy((String s) -> s.startsWith("ab")));
+        System.out.println(map);
+    }
 
 
 }
