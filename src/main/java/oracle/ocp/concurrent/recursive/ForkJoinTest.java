@@ -1,9 +1,8 @@
-package oracle.ocp.concurrent;
+package oracle.ocp.concurrent.recursive;
 
 import java.util.HashMap;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
-import java.util.stream.LongStream;
 
 public class ForkJoinTest {
     private static long N = 2_000_000_000L;
