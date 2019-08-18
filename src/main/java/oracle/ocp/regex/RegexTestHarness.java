@@ -22,14 +22,14 @@ public class RegexTestHarness {
             while (matcher.find()) {
                 System.out.printf("I found the text" +
                                 " \"%s\" starting at " +
-                                "index %d and ending at index %d.%n",
+                                "index %d and ending at index %d.%n\n",
                         matcher.group(),
                         matcher.start(),
                         matcher.end());
                 found = true;
             }
             if(!found){
-                System.out.printf("No match found.%n");
+                System.out.print("No match found.\n\n");
             }
         }
     }
