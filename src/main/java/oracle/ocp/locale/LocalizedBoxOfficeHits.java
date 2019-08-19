@@ -2,6 +2,8 @@ package oracle.ocp.locale;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.ResourceBundle.Control;
+import java.util.spi.ResourceBundleControlProvider;
 
 public class LocalizedBoxOfficeHits {
     public void printMovieDetails(ResourceBundle resBundle) {
@@ -17,10 +19,12 @@ public class LocalizedBoxOfficeHits {
         LocalizedBoxOfficeHits localizedHits = new LocalizedBoxOfficeHits();
         // print the largest box-office hit movie for default (US) locale
         Locale locale = Locale.getDefault();
-        localizedHits.printMovieDetails(ResourceBundle.getBundle("oracle.ocp.locale.ResBundle", locale));
+
+        Control resourceBundleControl = Control.getControl(Control.FORMAT_CLASS); // cases: Control.FORMAT_CLASS, Control.FORMAT_DEFAULT, Control.FORMAT_PROPERTIES <- last one will throw exception here
+        localizedHits.printMovieDetails(ResourceBundle.getBundle("oracle.ocp.locale.ResBundle", locale, resourceBundleControl));
 
         // print the largest box-office hit movie for Italian locale
         locale = new Locale("en", "EN", "");
-        localizedHits.printMovieDetails(ResourceBundle.getBundle("oracle.ocp.locale.ResBundle", locale));
+        localizedHits.printMovieDetails(ResourceBundle.getBundle("oracle.ocp.locale.ResBundle", locale, resourceBundleControl));
     }
 }
