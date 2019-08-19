@@ -3,7 +3,6 @@ package oracle.ocp.locale;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
-import java.util.spi.ResourceBundleControlProvider;
 
 public class LocalizedBoxOfficeHits {
     public void printMovieDetails(ResourceBundle resBundle) {
