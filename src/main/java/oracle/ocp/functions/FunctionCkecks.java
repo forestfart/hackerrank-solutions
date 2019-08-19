@@ -1,4 +1,4 @@
-package oracle.ocp.lambda;
+package oracle.ocp.functions;
 
 import java.util.function.Function;
 
