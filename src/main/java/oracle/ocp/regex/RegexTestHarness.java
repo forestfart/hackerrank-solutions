@@ -10,6 +10,11 @@ import java.util.regex.Pattern;
 public class RegexTestHarness {
 
     public static void main(String[] args) throws IOException {
+/*        Console console = System.console(); // returns null on IDE env
+        if (console == null) {
+            System.out.println("No console!");
+            System.exit(1);
+        }*/
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
 
