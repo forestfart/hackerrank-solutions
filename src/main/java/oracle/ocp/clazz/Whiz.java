@@ -16,4 +16,9 @@ public class Whiz {
 
         System.out.println(c.calc(2));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return true;
+    }
 }
