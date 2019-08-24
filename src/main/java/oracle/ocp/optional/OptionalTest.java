@@ -8,7 +8,10 @@ public class OptionalTest {
 
         Optional<Integer> optionalInteger = Optional.of(9);
 
-        optionalInteger.filter(p -> p > 8).ifPresent(System.out::print);
+        optionalInteger.filter(p -> p > 8).ifPresent(System.out::println);
+        optionalInteger.filter(x -> Integer.compare(12, x) > 0).ifPresent(System.out::println);
+
+        System.out.println(Integer.compare(8, optionalInteger.get()));
     }
 
 }

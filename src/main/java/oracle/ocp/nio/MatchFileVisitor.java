@@ -26,7 +26,7 @@ public class MatchFileVisitor {
 
     private static final class Search extends SimpleFileVisitor<Path> {
         public FileVisitResult visitFile(Path file, BasicFileAttributes basicFileAttributes) throws IOException {
-            Pattern pattern = Pattern.compile("....\\....");
+            Pattern pattern = Pattern.compile(".\\.....");
             PathMatcher pm = FileSystems.getDefault().getPathMatcher("regex:" + pattern);
             if (pm.matches(file.getFileName())) {
                 System.out.println(file);
