@@ -2,13 +2,16 @@ package oracle.ocp.concurrent;
 
 public class ThreadSafeSingleton {
 
-    private static ThreadSafeSingleton threadSafeSingleton;
+    volatile private static ThreadSafeSingleton threadSafeSingleton;
 
-    private ThreadSafeSingleton() {}
+    private ThreadSafeSingleton() {
+    }
 
-    public static synchronized ThreadSafeSingleton getInstance() {
+    public static ThreadSafeSingleton getInstance() {
         if (threadSafeSingleton == null) {
-            return threadSafeSingleton = new ThreadSafeSingleton();
+            synchronized (ThreadSafeSingleton.class) {
+                return threadSafeSingleton = new ThreadSafeSingleton();
+            }
         }
         return threadSafeSingleton;
     }
