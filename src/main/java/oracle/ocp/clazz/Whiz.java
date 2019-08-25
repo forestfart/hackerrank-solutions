@@ -15,10 +15,25 @@ public class Whiz {
         };
 
         System.out.println(c.calc(2));
+
+        class InnerMethodCheckModifier { // <<-- no access modifiers are allowed here
+            private int intReturn() {
+                return 1;
+            }
+        }
+
     }
 
     @Override
     public boolean equals(Object o) {
         return true;
+    }
+
+    public class InnerClassCheckModifier {
+
+        public int IntReturn() {
+            return 1;
+        }
+
     }
 }
