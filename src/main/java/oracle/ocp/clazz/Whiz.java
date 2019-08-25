@@ -16,11 +16,14 @@ public class Whiz {
 
         System.out.println(c.calc(2));
 
-        class InnerMethodCheckModifier { // <<-- no access modifiers are allowed here
+        class InnerMethodCheckModifier { // <<-- no access modifiers are allowed here, also cannot be static
             private int intReturn() {
-                return 1;
+                return 100;
             }
         }
+
+        System.out.println(new InnerClassCheckModifier().intReturn());
+        System.out.println(new InnerMethodCheckModifier().intReturn());
 
     }
 
@@ -29,11 +32,12 @@ public class Whiz {
         return true;
     }
 
-    public class InnerClassCheckModifier {
+    public static class InnerClassCheckModifier {
 
-        public int IntReturn() {
-            return 1;
+        int intReturn() {
+            return 55;
         }
+
 
     }
 }
