@@ -12,4 +12,5 @@ public class DateTimeParseBugCheck<T,D,E> {
 
         System.out.println(localDateTime.format(DateTimeFormatter.ofPattern("d MMMM yyyyG h 'godzina' m 'minut.'")));
     }
+
 }

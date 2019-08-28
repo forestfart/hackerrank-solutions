@@ -2,6 +2,7 @@ package oracle.ocp.clazz;
 
 public class Whiz {
     static int y = 1;
+    int xxx = 120;
 
     public static void main(String[] args) {
         abstract class Cal {
