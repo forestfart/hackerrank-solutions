@@ -5,6 +5,7 @@ import java.util.Locale;
 public class LocaleInstancesCheck {
     public static void main(String[] args) {
         Locale inLocale = Locale.TRADITIONAL_CHINESE;
+        Locale.setDefault(Locale.TRADITIONAL_CHINESE);
 
         Locale canada = Locale.CANADA;
         System.out.println(canada.getDisplayCountry(inLocale));
