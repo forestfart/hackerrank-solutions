@@ -9,7 +9,8 @@ public class IntSupplierTest {
         System.out.println(ins.getAsInt());
     }
 
-    static int getRandomInt10() {
+    private static int getRandomInt10() {
         return (int)(Math.random()*10)+1;
     }
+
 }
