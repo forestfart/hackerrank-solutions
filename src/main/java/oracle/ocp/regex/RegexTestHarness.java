@@ -1,7 +1,6 @@
 package oracle.ocp.regex;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
