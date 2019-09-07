@@ -3,7 +3,9 @@ package oracle.ocp.stream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.LongPredicate;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class Streams {
@@ -38,6 +40,12 @@ class StreamCheck4 {
         Map map = list.collect(Collectors.partitioningBy((String s) -> s.startsWith("ab")));
         System.out.println(map);
     }
+}
 
-
+class StreamCheck5 {
+    public static void main(String[] args) {
+        LongStream longStream = LongStream.range(30,60);
+        LongPredicate longPredicate = l -> l%3==0;
+        longStream.filter(longPredicate).forEach(System.out::println);
+    }
 }
