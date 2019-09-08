@@ -1,8 +1,6 @@
 package oracle.ocp.nio;
 
 import java.io.IOException;
-import java.io.InvalidObjectException;
-import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
