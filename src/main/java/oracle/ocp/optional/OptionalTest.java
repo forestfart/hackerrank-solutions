@@ -21,15 +21,14 @@ public class OptionalTest {
 
         System.out.println(opInt1);
 
-
         Optional<String> opString2 = Optional.of("65");
         Optional<Integer> opInt2 = opString2.flatMap(n -> Optional.of(Integer.decode(n)));
                           // <U> Optional<U> flatMap(Function<? super T, Optional<U>> mapper)
 
+
         System.out.println(opInt2);
 
         Optional<String> opDate = Optional.of("2019-09-18");
-
         Optional<LocalDate> optionalLocalDate = opDate.map(d -> LocalDate.parse(d));
 
         optionalLocalDate.ifPresent(System.out::println);
