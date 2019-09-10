@@ -17,7 +17,7 @@ public class Whiz {
 
         System.out.println(c.calc(2));
 
-        class InnerMethodCheckModifier { // <<-- no access modifiers are allowed here, also cannot be static
+        class InnerMethodCheckModifier { // <<-- no access modifiers are not allowed here, also cannot be static
             private int intReturn() {
                 return 100;
             }

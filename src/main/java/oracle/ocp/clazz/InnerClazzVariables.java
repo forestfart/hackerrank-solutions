@@ -10,10 +10,10 @@ public class InnerClazzVariables {
             private int x = 30;
 
             public void allTheX() {
-                System.out.println(x);            // 30
-                System.out.println(this.x);            // 30
-                System.out.println(B.this.x);     // 20
-                System.out.println(InnerClazzVariables.this.x);     // 10
+                System.out.println(x);                          // 30
+                System.out.println(this.x);                     // 30
+                System.out.println(B.this.x);                   // 20
+                System.out.println(InnerClazzVariables.this.x); // 10
             }
         }
     }
@@ -24,4 +24,5 @@ public class InnerClazzVariables {
         InnerClazzVariables.B.C c = b.new C();
         c.allTheX();
     }
+
 }
