@@ -1,15 +1,19 @@
 package oracle.ocp.clazz;
 
+interface Mother {}
+
+class ShitItself {}
+
 class ItWontCompile {}
 
-interface HeavyAnimal {} //fin it this is a class
+class HeavyAnimal implements Mother {} //fin it this is a class
 
-class Hippo implements HeavyAnimal {}
+class Hippo extends HeavyAnimal {}
 
 public class InstanceOfCheck {
 
     public static void main(String[] args) {
-        HeavyAnimal hippo = new Hippo();
+        Mother hippo = new Hippo();
 
         System.out.println(hippo instanceof HeavyAnimal);
 
