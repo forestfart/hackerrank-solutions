@@ -1,5 +1,7 @@
 package oracle.ocp.stream;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -47,5 +49,15 @@ class StreamCheck5 {
         LongStream longStream = LongStream.range(30,60);
         LongPredicate longPredicate = l -> l%3==0;
         longStream.filter(longPredicate).forEach(System.out::println);
+    }
+}
+
+class StreamCheck6 {
+    public static void main(String[] args) {
+        Stream<Integer> stream1 = Stream.of(1,234,5,678,9,0,1,23,456);
+        stream1.parallel().forEach(System.out::print);
+        System.out.println("");
+        Stream<Integer> stream2 = Stream.of(1,234,5,678,9,0,1,23,456);
+        stream2.parallel().forEachOrdered(System.out::print);
     }
 }
