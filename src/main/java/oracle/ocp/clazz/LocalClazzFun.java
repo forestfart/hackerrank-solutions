@@ -16,7 +16,8 @@ public class LocalClazzFun {
         }
         // in1++; not allowed here.. variables referenced from an inner class must be final or effectively final
 
-        System.out.println(new MethodInnerClazz().returnIt(76));
+        System.err.println(new MethodInnerClazz().returnIt(76));
+        System.err.write(5);
     }
 
     public static void main(String[] args) {
