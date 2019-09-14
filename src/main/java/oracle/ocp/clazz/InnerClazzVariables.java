@@ -16,6 +16,13 @@ public class InnerClazzVariables {
                 System.out.println(InnerClazzVariables.this.x); // 10
             }
         }
+        C c = new C();
+    }
+
+    void testMeth() {
+        InnerClazzVariables.B b = new InnerClazzVariables().new B();
+        B bc = new B();
+        B.C c = new B().new C();
     }
 
     public static void main(String[] args) {
