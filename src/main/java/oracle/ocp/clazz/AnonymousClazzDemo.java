@@ -31,7 +31,13 @@ public class AnonymousClazzDemo {
         int value = new AnonymousClazzDemo().admission(100);
 
         System.out.println(value);
+
+        A a = new A(); // <<- lol
     }
 
+}
+
+class A {
+    protected A(){};
 }
 
