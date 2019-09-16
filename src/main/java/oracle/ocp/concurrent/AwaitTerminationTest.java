@@ -28,7 +28,7 @@ public class AwaitTerminationTest {
                 Thread.sleep(4500);
             } catch (InterruptedException e) {
                 long elapsed = Duration.between(start, Instant.now()).toMillis();
-                System.out.printf("Interrupted exception arrived after: %sms", elapsed);;
+                System.err.printf("Interrupted exception arrived after: %sms", elapsed);;
             }
         }
     }
