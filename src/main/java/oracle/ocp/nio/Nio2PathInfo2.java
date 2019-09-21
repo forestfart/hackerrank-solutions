@@ -1,4 +1,4 @@
-package oracle.ocp;
+package oracle.ocp.nio;
 
 import java.io.IOException;
 import java.nio.file.LinkOption;
