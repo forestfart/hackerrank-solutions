@@ -24,11 +24,15 @@ class CandidateLocales {
                     + resourceBundleName);
         } else {
             System.out.println("Loaded the resource bundle for the locale: "
-                    + resourceBundleName + "." + rbLocaleName);
+                    + resourceBundleName + "_" + rbLocaleName);
         }
+        System.out.println(resourceBundle.getString("Greeting"));
     }
 
     public static void main(String[] args) {
-        loadResourceBundle("ResourceBundle", new Locale("pl", "PLZ", ""));
+        Locale locale = Locale.GERMAN;
+        //locale = new Locale("de", "DE");
+        locale = new Locale.Builder().setLanguage("de").setRegion("DE").build();
+        loadResourceBundle("ResourceBundle", locale);
     }
 }

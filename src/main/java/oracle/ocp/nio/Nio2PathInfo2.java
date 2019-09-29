@@ -1,9 +1,12 @@
 package oracle.ocp.nio;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static java.lang.System.out;
 
@@ -33,15 +36,27 @@ class PathCompare1 {
         Path path1 = Paths.get("Test");
         Path path2 = Paths.get("D:\\OCPJP\\programs\\NIO2\\Test");
         // comparing two paths using compareTo() method
-        System.out.println("(path1.compareTo(path2) == 0) is: "
+        out.println("(path1.compareTo(path2) == 0) is: "
                 + (path1.compareTo(path2) == 0));
 
         // comparing two paths using equals() method
-        System.out.println("path1.equals(path2) is: " + path1.equals(path2));
+        out.println("path1.equals(path2) is: " + path1.equals(path2));
 
         // comparing two paths using equals() method with absolute path
-        System.out.println("path2.equals(path1.toAbsolutePath()) is "
+        out.println("path2.equals(path1.toAbsolutePath()) is "
                 + path2.equals(path1.toAbsolutePath()));
+    }
+}
+
+class PathCheck1 {
+    public static void main(String[] args) throws IOException {
+        Path p1 = Paths.get("./Pics/MyPic.jpeg").toAbsolutePath().normalize();
+        out.println(p1);
+        out.println (p1.getNameCount() + ":" + p1.getName(1) + ":"  + p1.getFileName() + ":" + p1.getName(0));
+
+        Path file = Paths.get ("courses.txt");
+        List<String> fc = Files.readAllLines(file); fc.stream().forEach(s -> System.out.println(s));
+        Stream<String> fc2 = Files.lines (file); fc.forEach(s -> System.out.println(s));
     }
 }
 
