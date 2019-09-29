@@ -16,16 +16,24 @@ public class TryWithResourcesTest {
         } finally {
             System.out.println("Finally now goes..");
         }
+        Closeable1 closeable1 = new Closeable1();
+        try {
+            closeable1.close();
+            closeable1.print();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 }
 
 class Closeable1 implements AutoCloseable {
-    void print() {
+    void print() throws Exception {
         System.out.println("AutoCloseable prints");
+        throw new Exception();
     }
 
     @Override
-    public void close() {
+    public void close() throws Exception {
         System.out.println("AutoCloseable closed.");
     }
 }

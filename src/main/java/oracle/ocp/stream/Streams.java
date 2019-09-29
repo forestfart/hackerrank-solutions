@@ -1,9 +1,12 @@
 package oracle.ocp.stream;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.LongPredicate;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
@@ -57,5 +60,33 @@ class StreamCheck6 {
         System.out.println("");
         Stream<Integer> stream2 = Stream.of(1,234,5,678,9,0,1,23,456);
         stream2.parallel().forEachOrdered(System.out::print);
+    }
+}
+
+class Done {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList("win most", "try best ", "best choice", "done");
+
+        Predicate<String> test1 = s -> {
+            System.out.println("Checking...");
+            return s.equals("done");
+        };
+
+        Predicate<String> test2 = (String s) -> s.length() > 4;
+
+        list.stream()
+                .filter(test1)
+                .filter(test2)
+                .count();
+    }
+}
+
+class Images {
+    public static void main(String[] args) {
+        List<String> codes = Arrays.asList ("DOC", "MPEG", "JPEG");
+        codes.forEach (c -> System.out.print(c + " "));
+        String fmt = codes.stream()
+                .filter (s-> s.contains ("PEG"))
+                .reduce((s, t) -> s + t).get(); System.out.println("\n" + fmt);
     }
 }
