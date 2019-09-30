@@ -13,3 +13,22 @@ public class AtomicIntegerMethods {
 
     }
 }
+
+class MyThready implements Runnable {
+    private static AtomicInteger count = new AtomicInteger(0);
+
+    public void run() {
+        int x = count.incrementAndGet();
+        System.out.print(x + " ");
+    }
+
+    public static void main(String[] args) {
+        Thread thread1 = new Thread(new MyThready());
+        Thread thread2 = new Thread(new MyThready());
+        Thread thread3 = new Thread(new MyThready());
+        Thread[] ta = {thread1, thread2, thread3};
+        for (int x = 0; x < 3; x++) {
+            ta[x].start();
+        }
+    }
+}

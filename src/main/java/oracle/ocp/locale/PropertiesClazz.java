@@ -20,6 +20,7 @@ public class PropertiesClazz {
             Statement statement = con.createStatement();
             String query = "SELECT * FROM Users";
             ResultSet resultSet = statement.executeQuery(query);
+            statement.execute(query);
             resultSet.first();
             while (resultSet.next()) {
                 String userNamed = resultSet.getString(1);
