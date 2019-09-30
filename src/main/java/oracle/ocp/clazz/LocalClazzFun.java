@@ -1,7 +1,5 @@
 package oracle.ocp.clazz;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-
 public class LocalClazzFun {
     static int statInt = 40;
     int in = 20;
