@@ -8,7 +8,9 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
-
+dependencies {
+    compile 'mysql:mysql-connector-java:6.0.+'
+}
 dependencies {
     testCompile(
             'junit:junit:4.12',
