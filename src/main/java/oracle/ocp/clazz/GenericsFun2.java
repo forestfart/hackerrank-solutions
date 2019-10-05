@@ -1,9 +1,5 @@
 package oracle.ocp.clazz;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
-import java.io.File;
-
 class Foo<K, V> {
     private K key;
     private V value;
