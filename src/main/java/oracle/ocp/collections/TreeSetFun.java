@@ -23,14 +23,7 @@ class Vehicle implements Comparable<Vehicle> {
 
     @Override
     public int compareTo(Vehicle vehicle) {
-        if (vehicle.id == this.id) {
-            return 0;
-        } else {
-            if (vehicle.id < this.id) {
-                return 1;
-            }
-            return -1;
-        }
+        return this.id > vehicle.id ? 1 : this.id < vehicle.id ? -1 : 0;
     }
 }
 
@@ -39,6 +32,7 @@ public class TreeSetFun {
         Set<Vehicle> vehicles = new TreeSet<>();
         vehicles.add(new Vehicle(212, "Noname"));
         vehicles.add(new Vehicle(342, "Yetiii"));
+        vehicles.add(new Vehicle(342, "Montii"));
         vehicles.add(new Vehicle(2, "Montahnanana"));
 
         System.out.println(vehicles);
