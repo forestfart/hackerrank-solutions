@@ -4,6 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static oracle.ocp.stream.Student.City.LOS_ANGELES;
+import static oracle.ocp.stream.Student.City.NEW_YORK;
+import static oracle.ocp.stream.Student.Course.JAVA_EE;
+import static oracle.ocp.stream.Student.Course.JAVA_SE;
+
 class Student {
     private String name;
     private Course course;
@@ -57,9 +62,9 @@ class Student {
 public class GroupingByFun {
     public static void main(String[] args) {
         List<Student> students = Arrays.asList(
-                new Student("Kate", Student.Course.JAVA_SE, Student.City.LOS_ANGELES),
-                new Student("Adam", Student.Course.JAVA_EE, Student.City.NEW_YORK),
-                new Student("Morrison", Student.Course.JAVA_SE, Student.City.LOS_ANGELES));
+                new Student("Kate", JAVA_SE, LOS_ANGELES),
+                new Student("Adam", JAVA_EE, NEW_YORK),
+                new Student("Morrison", JAVA_SE, LOS_ANGELES));
 
         students.stream().collect(Collectors.groupingBy(Student::getCourse))
                 .forEach((course, js) -> System.out.println(course + " " + js));
