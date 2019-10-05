@@ -10,11 +10,22 @@ public class ArrayDequeTest {
         arrayDeque.add(20);
         arrayDeque.add(30);
         arrayDeque.add(40);
-        System.out.println(arrayDeque.element() + arrayDeque.poll());
         arrayDeque.add(50);
-
-        System.out.printf("First element: %d, last element: %d", arrayDeque.peekFirst(), arrayDeque.peekLast());
         System.out.println(arrayDeque);
+        System.out.printf("First element: %d, last element: %d\n", arrayDeque.peekFirst(), arrayDeque.peekLast());
+        System.out.println("Element: " + arrayDeque.element() + " polling: " + arrayDeque.poll());
+        System.out.println("now contains: " + arrayDeque);
+        System.out.println("Popping element: " + arrayDeque.pop());
+        System.out.println("now contains: " + arrayDeque);
+        System.out.println("Removing element: " + arrayDeque.remove());
+        System.out.println("now contains: " + arrayDeque);
+        System.out.println("Removing first element: " + arrayDeque.removeFirst());
+        System.out.println("now contains: " + arrayDeque);
+        arrayDeque.offer(200);
+        arrayDeque.push(203);
+        System.out.println("peeks: " + arrayDeque.peek());
+        System.out.println("now contains: " + arrayDeque);
+
     }
 
 }
