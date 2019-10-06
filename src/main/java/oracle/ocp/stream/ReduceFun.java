@@ -3,6 +3,8 @@ package oracle.ocp.stream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 class Product {
     int id; int price;
@@ -39,6 +41,23 @@ public class ReduceFun {
         String concatenated = list.stream().reduce("Just saying: ", (str, ds) -> str.concat(ds));
         System.out.println(concatenated);
     }
+}
 
+class Images {
+    public static void main(String[] args) {
+        List<String> codes = Arrays.asList ("DOC", "MPEG", "JPEG");
+        codes.forEach (c -> System.out.print(c + " "));
+        String fmt = codes.stream()
+                .filter (s-> s.contains ("PEG"))
+                .reduce((s, t) -> s + t).get();
+        System.out.println("\n" + fmt);
 
+        Predicate<String> predicate = n -> n.contains("P");
+        List<String> list = codes.stream().filter(n -> n.length()>3).filter(predicate).collect(Collectors.toList());
+        System.out.println(list);
+
+        System.out.println("ParallelStream results: " + codes.parallelStream().isParallel());
+        String answer = codes.stream().parallel().reduce("Prefix_", (str1, str2) -> str1.concat(str2 + " "));
+        System.out.println(answer);
+    }
 }
