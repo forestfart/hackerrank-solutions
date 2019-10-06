@@ -16,6 +16,8 @@ public class ConnectionSetUpFun {
             while (resultSet.next()) {
                 System.out.printf("%s, %s, %s\n", resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3));
             }
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            System.out.println("ERROR");
+        }
     }
 }

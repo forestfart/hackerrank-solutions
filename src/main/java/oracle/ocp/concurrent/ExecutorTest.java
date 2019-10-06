@@ -1,6 +1,11 @@
 package oracle.ocp.concurrent;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.stream.IntStream;
 
 class Task implements Runnable {
@@ -30,5 +35,24 @@ public class ExecutorTest {
         thread.start();
         RepeatedExecutor executor = new RepeatedExecutor();
         executor.execute(runnable,3);
+    }
+}
+
+class ExecutorsTestTwo {
+    static class CallerThread implements Callable<String> {
+        String str;
+        public CallerThread(String s) {
+            this.str=s;
+        }
+        public String call() throws Exception {
+            return str.concat("Call");
+        }
+    }
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ExecutorService es = Executors.newFixedThreadPool(4); //line n1
+        Future future1 = es.submit(new CallerThread("Call "));
+        System.out.println(future1.get());
+
     }
 }

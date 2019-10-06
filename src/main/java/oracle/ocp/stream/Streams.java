@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.LongPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -78,5 +79,30 @@ class Done {
                 .filter(test1)
                 .filter(test2)
                 .count();
+    }
+}
+
+class ConsumerTest {
+    public static void main(String[] args) {
+        class Product {
+            String name;
+            Integer price;
+            public Product(String name, Integer price) {
+                this.name = name;
+                this.price = price;
+            }
+            void setPrice(Integer price) {this.price = price;}
+            Integer getPrice() {return price;}
+
+            @Override
+            public String toString() {
+                return name + ':' + price;
+            }
+        }
+
+        List<Product> productList = Arrays.asList(new Product("PlasticShit", 100), new Product("NonPlasticShit", 400));
+        Consumer<Product> consumer = n -> n.setPrice(n.getPrice() + 10);
+        productList.forEach(consumer);
+        productList.forEach(System.out::println);
     }
 }
