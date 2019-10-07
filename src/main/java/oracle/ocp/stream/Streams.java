@@ -1,11 +1,11 @@
 package oracle.ocp.stream;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.LongPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -64,6 +64,26 @@ class StreamCheck6 {
     }
 }
 
+class StreamCheck7 {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(10, 20, 30);
+        Function<Integer, Integer> function = element -> element + element;
+        Consumer<Integer> consumer = s -> System.out.printf("val:%s ", s);
+        list.stream().map(function).forEach(consumer);
+    }
+}
+
+class StreamCheck8 {
+    public static void main(String[] args) {
+        List<Person> personList = Arrays.asList(
+                new Person("Mike", 30),
+                new Person("Mike Hill", 21),
+                new Person("Thomas Hill", 24));
+        Stream<Person> stream = personList.stream().filter(p -> p.getAge() > 22);
+        System.out.println(stream.filter(p -> p.getName().contains("Hill")).count());
+    }
+}
+
 class Done {
     public static void main(String[] args) {
         List<String> list = Arrays.asList("win most", "try best ", "best choice", "done");
@@ -84,25 +104,34 @@ class Done {
 
 class ConsumerTest {
     public static void main(String[] args) {
-        class Product {
-            String name;
-            Integer price;
-            public Product(String name, Integer price) {
-                this.name = name;
-                this.price = price;
-            }
-            void setPrice(Integer price) {this.price = price;}
-            Integer getPrice() {return price;}
-
-            @Override
-            public String toString() {
-                return name + ':' + price;
-            }
-        }
-
-        List<Product> productList = Arrays.asList(new Product("PlasticShit", 100), new Product("NonPlasticShit", 400));
-        Consumer<Product> consumer = n -> n.setPrice(n.getPrice() + 10);
+        List<Person> productList = Arrays.asList(new Person("PlasticShit", 100), new Person("NonPlasticShit", 400));
+        Consumer<Person> consumer = n -> n.setAge(n.getAge() + 10);
         productList.forEach(consumer);
         productList.forEach(System.out::println);
+    }
+}
+
+class Person {
+    String name;
+    Integer age;
+    public Person(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+    void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    Integer getAge() {
+        return age;
+    }
+
+    @Override
+    public String toString() {
+        return name + ':' + age;
     }
 }
