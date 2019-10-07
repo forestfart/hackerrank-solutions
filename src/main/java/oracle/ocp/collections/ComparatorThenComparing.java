@@ -17,6 +17,14 @@ class Employee {
         this.lastName = secondName;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     @Override
     public String toString() {
         return firstName + ':' + lastName;
@@ -31,8 +39,10 @@ class Employee {
                 new Employee("Marcin", "Nowak"),
                 new Employee("Jan", "Cool"),
                 new Employee("Madeleine", "Smith"));
-        employees.sort(Comparator.comparing((Employee e) -> e.firstName).reversed().thenComparing((Employee e) -> e.lastName));
-        System.out.println(employees);
+        List<Employee> employeesSorted  = employees.stream()
+                .sorted(Comparator.comparing((Employee e) -> e.firstName).reversed().thenComparing((Employee e) -> e.lastName))
+                .collect(Collectors.toList());
+        System.out.println(employeesSorted);
     }
 }
 
