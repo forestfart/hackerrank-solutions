@@ -8,6 +8,34 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+class Employee {
+    String firstName;
+    String lastName;
+
+    public Employee(String firstName, String secondName) {
+        this.firstName = firstName;
+        this.lastName = secondName;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + ':' + lastName;
+    }
+
+    public static void main(String[] args) {
+        List<Employee> employees = Arrays.asList(
+                new Employee("John", "Smith"),
+                new Employee("Alan", "Parks"),
+                new Employee("Jan", "Kowalski"),
+                new Employee("Natalia", "Mak"),
+                new Employee("Marcin", "Nowak"),
+                new Employee("Jan", "Cool"),
+                new Employee("Madeleine", "Smith"));
+        employees.sort(Comparator.comparing((Employee e) -> e.firstName).reversed().thenComparing((Employee e) -> e.lastName));
+        System.out.println(employees);
+    }
+}
+
 public class ComparatorThenComparing {
     public static void main(String[] args) {
         List<Vehicle> vehicleList = Arrays.asList(
