@@ -56,3 +56,13 @@ class ExecutorsTestTwo {
 
     }
 }
+
+class ExecutorsTestThree {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ExecutorService es = Executors.newSingleThreadExecutor();
+        es.execute(new Task());
+        Future<String> future = es.submit(() -> "Call task.call()");
+        System.out.println(future.get());
+        es.shutdown();
+    }
+}
