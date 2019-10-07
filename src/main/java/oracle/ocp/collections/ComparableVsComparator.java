@@ -28,10 +28,7 @@ class VehicleComparable implements Comparable {
 
     @Override
     public String toString() {
-        return "VehicleComparable{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return id + " : " + name;
     }
 }
 
@@ -84,7 +81,6 @@ public class ComparableVsComparator {
         comparableList.stream().sorted().forEach(System.out::println);
 
         // comparatorList.stream().sorted().forEach(System.out::println); <<- class cast exception: cannot cast to Comparable
-
 
     }
 }
