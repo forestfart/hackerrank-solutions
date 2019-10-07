@@ -72,4 +72,15 @@ class PathCheck2 {
     }
 }
 
+class PathCheck3 {
+    public static void main(String[] args) {
+        Path path1 = Paths.get("/foo/././foo/bar.txt");
+        Path path2 = path1.normalize();
+        Path path3 = path2.relativize(path1);
+        Path path4 = path3.normalize();
+        System.out.printf("%s  .:|:. %s .:|:. %s .:|:. %s\n", path1, path2, path3, path4);
+        System.out.printf("%s  .:|:. %s .:|:. %s .:|:. %s", path1.getNameCount(), path2.getNameCount(), path3.getNameCount(), path4.getNameCount());
+    }
+}
+
 
