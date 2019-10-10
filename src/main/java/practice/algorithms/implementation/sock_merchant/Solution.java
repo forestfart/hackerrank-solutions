@@ -7,14 +7,12 @@ import java.util.stream.Collectors;
 
 public class Solution {
     static int sockMerchant(int n, int... ar) {
-        Map<Integer, List<Integer>> groupedList = Arrays.stream(ar)
+        Map<Integer, Long> groupedList = Arrays.stream(ar)
                 .boxed()
-                .collect(Collectors.groupingBy(ni -> ni));
-        return groupedList.values().stream()
-                .map(List::size)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        return (int) groupedList.values().stream()
                 .map(g -> g/2)
-                .reduce(Integer::sum)
-                .orElse(0);
+                .count();
     }
 
     public static void main(String[] args) {
