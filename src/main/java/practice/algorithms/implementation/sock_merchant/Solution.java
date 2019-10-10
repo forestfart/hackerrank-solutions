@@ -1,8 +1,13 @@
-package practice.algorithms.implementation.sock_merchant
+package practice.algorithms.implementation.sock_merchant;
 
+import java.time.Instant;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.SplittableRandom;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Solution {
@@ -31,7 +36,7 @@ public class Solution {
                 .orElse(0);
     }
     static int sockMerchantStreamImproved(int n, int... ar) {
-        Map<Integer, Long> groupedList = Arrays.stream(ar)
+        Map<Integer, Long> groupedList = Arrays.stream(ar).parallel()
                 .boxed()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         return groupedList.values().stream()
