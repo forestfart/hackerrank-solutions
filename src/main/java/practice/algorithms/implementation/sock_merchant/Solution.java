@@ -29,7 +29,8 @@ public class Solution {
         Map<Integer, List<Integer>> groupedList = Arrays.stream(ar)
                 .boxed()
                 .collect(Collectors.groupingBy(i -> i));
-        return groupedList.values().stream()
+        return groupedList.values()
+                .stream()
                 .map(List::size)
                 .map(g -> g/2)
                 .reduce(Integer::sum)
@@ -41,7 +42,9 @@ public class Solution {
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         return groupedList.values().stream()
                 .map(g -> g/2)
-                .reduce(Long::sum).get().intValue();
+                .reduce(Long::sum)
+                .get()
+                .intValue();
     }
 
     public static void main(String[] args) {
