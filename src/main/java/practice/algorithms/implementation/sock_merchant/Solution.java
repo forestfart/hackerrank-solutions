@@ -37,14 +37,12 @@ public class Solution {
                 .orElse(0);
     }
     static int sockMerchantStreamImproved(int n, int... ar) {
-        Map<Integer, Long> groupedList = Arrays.stream(ar).parallel()
+        Arrays.stream(ar).parallel()
                 .boxed()
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        return groupedList.values().stream()
-                .map(g -> g/2)
-                .reduce(Long::sum)
-                .get()
-                .intValue();
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .values()
+                .stream()
+                .reduce(0, (a, b) -> a + b.intValue()/2, (a, b) -> a + b);
     }
 
     public static void main(String[] args) {
