@@ -8,6 +8,7 @@ public class LocalizedHello {
         Locale currentLocale = Locale.getDefault();
         ResourceBundle resBundle = ResourceBundle.getBundle("ResourceBundle", currentLocale);
         System.out.println(resBundle.getString("Greeting"));
+        System.out.println(resBundle.getObject("Greeting"));
 
         currentLocale = Locale.ITALIAN;
         ResourceBundle resourceBundleIt = ResourceBundle.getBundle("ResourceBundle", currentLocale);

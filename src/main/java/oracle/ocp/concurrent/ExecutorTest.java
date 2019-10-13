@@ -120,4 +120,25 @@ class Runner implements Runnable {
     }
 }
 
+class ThreadRunner implements Runnable {
+    public void run () {
+        System.out.print("Runnable") ;
+    }
+}
+class ThreadCaller implements Callable {
+    public String call() throws Exception {
+        return "Callable";
+    }
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ExecutorService es = Executors.newCachedThreadPool();
+        Runnable r1 = new ThreadRunner();
+        Callable c1 = new ThreadCaller();
+        Future f1 = es.submit(r1);
+        Future<String> f2 = es.submit(c1);
+        System.out.println(f2.get());
+        es.shutdown();
+    }
+}
+
 
