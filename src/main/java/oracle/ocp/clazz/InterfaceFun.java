@@ -12,11 +12,20 @@ public interface InterfaceFun {
     };
 }
 
+abstract class Bigable {
+    public abstract void doThat(String s);
+}
+
 interface Doable {
     public void doSomething(String s);
 }
-abstract class Task implements Doable {
+
+class Task extends Bigable implements Doable  {
     public void doSometingElse(String s) {}
+
+    public void doThat(String s){};
+
+    public void doSomething(String s){};
 }
 /*abstract class Work implements Doable {
     public abstract void doSomething(String s){};

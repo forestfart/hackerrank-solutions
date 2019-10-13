@@ -30,3 +30,7 @@ class Bread extends Cake {
     }
 }
 
+abstract class Operator {
+    protected abstract void turnOn();
+
+}

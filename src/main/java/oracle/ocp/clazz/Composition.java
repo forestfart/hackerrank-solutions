@@ -1,5 +1,8 @@
 package oracle.ocp.clazz;
 
+import java.io.IOException;
+import java.rmi.AccessException;
+
 public class Composition extends Frame implements Drawable{
 }
 
@@ -25,3 +28,22 @@ interface Drawable {
     public abstract void draw();
 }
 
+class Video {
+    public void play() throws IOException {
+        System.out.println("video play");
+    }
+}
+
+class Game extends Video {
+    public void play() throws IOException {
+        super.play();
+        System.out.println("game play");
+    }
+
+    public static void main(String[] args) {
+        try {
+            Video video = new Game();
+            video.play();
+        } catch (Exception e) {}
+    }
+}
