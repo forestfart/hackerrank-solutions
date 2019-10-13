@@ -43,3 +43,4 @@ class Do implements Doable {
     public void doSomething(String s) {}
     public void doThat(String s) {}
 }
+
