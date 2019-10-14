@@ -7,14 +7,19 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 class Product {
-    int id; int price;
-    public Product (int id, int price) {
-        this.id = id; this.price = price;
+    int id;
+    int price;
+
+    public Product(int id, int price) {
+        this.id = id;
+        this.price = price;
     }
+
     public String toString() {
         return id + "-" + price;
     }
-
+}
+public class ReduceFun {
     public static void main(String[] args) {
         List<Product> products = new ArrayList<>(4);
         products.add(new Product(1,10));
@@ -35,7 +40,26 @@ class Product {
     }
 }
 
-public class ReduceFun {
+class ReduceFun1 {
+    public static void main(String[] args) {
+        List<Product> products = new ArrayList<>(Arrays.asList(
+                new Product(1, 10),
+                new Product(2, 30),
+                new Product(3, 20)));
+        Product p = products.stream().reduce(new Product (4, 0),
+                (p1, p2) -> {
+                    p1.price+=p2.price;
+                    return new Product(p1.id, p1.price);
+                }
+        );
+        products.add(p);
+        products.stream().parallel()
+                .reduce((p1, p2) -> p1.price > p2.price ? p1 : p2)
+                .ifPresent(System.out::println);
+    }
+}
+
+class ReduceFun2 {
     public static void main(String[] args) {
         List<String> list = Arrays.asList("what ", "whot ", "whoooot ", "whooooot! ");
         String concatenated = list.stream().reduce("Just saying: ", (str, ds) -> str.concat(ds));
