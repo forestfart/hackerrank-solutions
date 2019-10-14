@@ -37,7 +37,7 @@ public class Solution {
                 .orElse(0);
     }
     static int sockMerchantStreamImproved(int n, int... ar) {
-        Arrays.stream(ar).parallel()
+        return Arrays.stream(ar).parallel()
                 .boxed()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .values()
