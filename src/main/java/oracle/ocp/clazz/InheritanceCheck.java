@@ -18,3 +18,20 @@ public class InheritanceCheck {
         System.out.println(b2.read("http://ebook.com/ebook"));
     }
 }
+
+class FuelNotAvailException extends Exception {}
+class VehicleT {
+    void ride() throws Exception {		    //line n1
+        System.out.println("Happy Journey!");
+    }
+}
+class SolarVehicle extends VehicleT {
+    public void ride() throws Exception {   //line n2
+        super.ride();
+    }
+
+    public static void main(String[] args) throws FuelNotAvailException, Exception {
+        VehicleT v = new SolarVehicle();
+        v.ride();
+    }
+}

@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 public class ShortCircuitAndParallelStreams {
     public static void main(String[] args) {
         List<String> cs = Arrays.asList("Java", "Java SE", "Java ME");
+        System.out.println("Contains: " + cs.contains("Java"));
 
         System.out.println(cs.stream().findAny().get().equals("Java"));
         System.out.println(cs.stream().anyMatch(w -> w.equals("Java")));

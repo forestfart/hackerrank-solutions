@@ -1,4 +1,4 @@
-package oracle.ocp;
+package oracle.ocp.functions;
 
 import java.util.function.LongUnaryOperator;
 

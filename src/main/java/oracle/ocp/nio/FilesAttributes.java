@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FileAttributes {
+public class FilesAttributes {
     public static void main(String[] args) throws IOException {
         Path path = Paths.get("T:");
         System.out.println(Files.getOwner(path) + " " + Files.getFileStore(path));
