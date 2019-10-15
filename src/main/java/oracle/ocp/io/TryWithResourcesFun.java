@@ -1,5 +1,8 @@
 package oracle.ocp.io;
 
+import java.nio.file.Files;
+import java.util.List;
+
 public class TryWithResourcesFun implements AutoCloseable{
     int var;
     public void close() {}

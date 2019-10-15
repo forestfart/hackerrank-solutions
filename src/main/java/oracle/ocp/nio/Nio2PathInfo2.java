@@ -68,7 +68,19 @@ class PathCheck2 {
         Path res2 = path2.resolve("\\readme.exe");
         System.out.println(res1);
         System.out.println(res2);
+    }
+}
 
+class PathCheck2a {
+    public static void main(String[] args) {
+        // Given code fragment:
+
+        Path path1 = Paths.get("/app/./sys/");
+        Path res1 = path1.resolve("log");
+        Path path2 = Paths.get("/server/exe/");
+        Path res2 = path2.resolve("/readme/");
+        System.out.print(res1);
+        System.out.print(res2);
     }
 }
 

@@ -2,6 +2,7 @@ package oracle.ocp.stream;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamOfStreams {
@@ -9,7 +10,7 @@ public class StreamOfStreams {
         Stream<List<String>> iStr = Stream.of(
                 Arrays.asList("1", "John"),
                 Arrays.asList("2", null));
-        Stream<String> nInSt = iStr.flatMap(x -> x.stream());
+        IntStream nInSt = iStr.flatMapToInt(x -> x.stream().mapToInt(Integer::valueOf));
         nInSt.forEach(System.out::print);
     }
 
