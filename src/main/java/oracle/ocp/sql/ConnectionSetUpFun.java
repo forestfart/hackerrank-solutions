@@ -49,7 +49,7 @@ class ConnectionSetUpFun2 {
 }
 
 class ConnectionSetUpFun3 {
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         try {
             Connection connection = DriverManager.getConnection(ConProps.URL, ConProps.USER, ConProps.PASSWORD);
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -63,6 +63,29 @@ class ConnectionSetUpFun3 {
             }
             resultSet.absolute(2);
             System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2));
+        } catch (SQLException e) {
+            System.out.println("Exception is raised");
+            e.printStackTrace();
+        }
+    }
+}
+
+class ConnectionSetUpFun4 {
+    public static void main(String[] args) {
+        try {
+            Connection connection = DriverManager.getConnection(ConProps.URL, ConProps.USER, ConProps.PASSWORD);
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            statement.execute("SELECT * FROM book");
+            ResultSet resultSet = statement.getResultSet();
+            resultSet.absolute(4);
+            resultSet.moveToInsertRow();
+            resultSet.updateInt(1, 84);
+            resultSet.updateString(2, "Jannset");
+            resultSet.updateInt(3, 1972);
+            resultSet.insertRow();
+            //resultSet.updateRow();
+            //resultSet.refreshRow();
+            System.out.printf("\n%d: %s %d %s", resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4));
         } catch (SQLException e) {
             System.out.println("Exception is raised");
             e.printStackTrace();
