@@ -19,7 +19,7 @@ public class Solution {
             }
             return new Integer[]{aj, bj};
         } else {
-            return new Integer[]{};
+            return null;
         }
     }
 
@@ -31,7 +31,7 @@ public class Solution {
             for (int j = 0; j < aList.size(); j++) {
                 if (i != j && i < aList.size() && j < bList.size()) {
                     result = checkPair(aList.get(i), bList.get(i), aList.get(j), bList.get(j));
-                    if (result.length == 2) {
+                    if (result != null) {
                         System.out.println(i + ":" + j + " replacing " + aList.set(i, result[0]) + " with " + result[0]);
                         System.out.println(i + ":" + j + " replacing " + bList.set(i, result[1]) + " with " + result[1]);
                         System.out.println(+i + ":" + j + " removing: " + aList.remove(j));
