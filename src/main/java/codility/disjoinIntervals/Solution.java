@@ -1,15 +1,27 @@
 package codility.disjoinIntervals;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-// you can write to stdout for debugging purposes, e.g.
-// System.out.println("this is a debug message");
-
 public class Solution {
+
+    private Integer[] checkPair(Integer ai, Integer bi, Integer aj, Integer bj) {
+        if (ai <= aj && bi >= aj) {                         // overlap right
+            if (bi >= bj) {
+                return new Integer[]{ai, bi};
+            }
+            return new Integer[]{ai, bj};
+        }
+        if (ai >= aj && ai <= bj) {                         // overlap left
+            if (bi >= bj) {
+                return new Integer[]{aj, bi};
+            }
+            return new Integer[]{aj, bj};
+        } else {
+            return new Integer[]{};
+        }
+    }
 
     public int solution(int[] a, int[] b) {
         Integer[] result;
@@ -18,26 +30,29 @@ public class Solution {
         for (int i = 0; i < aList.size(); i++) {
             for (int j = 0; j < aList.size(); j++) {
                 if (i != j && i < aList.size() && j < bList.size()) {
-                    result = checkPair(aList.get(i), bList.get(i), bList.get(j), bList.get(j));
+                    result = checkPair(aList.get(i), bList.get(i), aList.get(j), bList.get(j));
                     if (result.length == 2) {
                         System.out.println(i + ":" + j + " replacing " + aList.set(i, result[0]) + " with " + result[0]);
                         System.out.println(i + ":" + j + " replacing " + bList.set(i, result[1]) + " with " + result[1]);
-                        System.out.println(+ i + ":" + j + " removing: " + aList.remove(j));
-                        System.out.println(+ i + ":" + j + " removing: " + bList.remove(j));
+                        System.out.println(+i + ":" + j + " removing: " + aList.remove(j));
+                        System.out.println(+i + ":" + j + " removing: " + bList.remove(j));
+                        i = 0; j = 0;
                     }
                 }
             }
+
         }
         System.out.println(aList + "\n" + bList);
-
         return 0;
     }
 
-
     public static void main(String[] args) {
         Solution run = new Solution();
-        int[] a = new int[]{1, 5, 49, 80, 10};
-        int[] b = new int[]{2, 45, 50, 99, 200};
+        int[] a = new int[]{5, 1, 49, 80, 10};
+        int[] b = new int[]{18, 20, 50, 89, 200};
+
+        int[] x = new int[]{5, 1, 49, 80, 10, 34, 3, -100, -23, 23, 80};
+        int[] y = new int[]{18, 15, 50, 89, 20, 47, 4, -86, -1, 34, 120};
 
         int[] c = new int[]{1, 12, 42, 70, 36, -4, 43};
         int[] d = new int[]{5, 15, 44, 72, 36, 2, 69};
@@ -47,31 +62,10 @@ public class Solution {
 
         run.solution(a, b);
         System.out.println("\n------");
+        run.solution(x, y);
+        System.out.println("\n------");
         run.solution(c, d);
         System.out.println("\n------");
         run.solution(e, f);
-    }
-
-    private Integer[] checkPair(Integer a1, Integer b1, Integer a2, Integer b2) {
-        if (a2 <= a1 && b2 >= a1) {
-            if (b1 >= b2) {
-                return new Integer[]{a2, b1};               // overlap
-            }
-            return new Integer[]{a2, b2};
-        }
-        if (a2 >= a1 && a2 <= b1) {
-            if (b2 >= b1) {
-                return new Integer[]{a1, b2};               // overlap
-            }
-            return new Integer[]{a1, b2};
-        }/*
-        if (a2 <= a1 && b2 >= b1) {
-            return new int[]{a2, b2};               // right includes left
-        }
-        if (a2 >= a1 && b2 <= b1) {
-            return new int[]{a1, b1};               // left includes right
-        */ else {
-            return new Integer[]{};
-        }
     }
 }
