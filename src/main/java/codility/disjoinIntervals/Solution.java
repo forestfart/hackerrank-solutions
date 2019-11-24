@@ -1,75 +1,36 @@
 package codility.disjoinIntervals;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 // you can write to stdout for debugging purposes, e.g.
 // System.out.println("this is a debug message");
 
 public class Solution {
-    int[] a_;
-    int[] b_;
 
     public int solution(int[] a, int[] b) {
-        a_ = a;
-        b_ = b;
-        int length = a.length;
-        for (int i = 0; i < length - 1; i++) {
-            for (int j = 0; j < length; j++) {
-                if (i != j) {
-                    int[] result = checkPair(a_[i], b_[i], a_[j], b_[j]);
+        Integer[] result;
+        List<Integer> aList = IntStream.of(a).boxed().collect(Collectors.toList());
+        List<Integer> bList = IntStream.of(b).boxed().collect(Collectors.toList());
+        for (int i = 0; i < aList.size(); i++) {
+            for (int j = 0; j < aList.size(); j++) {
+                if (i != j && i < aList.size() && j < bList.size()) {
+                    result = checkPair(aList.get(i), bList.get(i), bList.get(j), bList.get(j));
                     if (result.length == 2) {
-                        join(result, Math.min(i, j), Math.max(i, j), a_, b_);
-                        length = length - 1;
-                        i = 0;
-                        j = 0;
+                        System.out.println(i + ":" + j + " replacing " + aList.set(i, result[0]) + " with " + result[0]);
+                        System.out.println(i + ":" + j + " replacing " + bList.set(i, result[1]) + " with " + result[1]);
+                        System.out.println(+ i + ":" + j + " removing: " + aList.remove(j));
+                        System.out.println(+ i + ":" + j + " removing: " + bList.remove(j));
                     }
                 }
             }
         }
-        IntStream.of(a_).forEach(n -> System.out.print(n + ", "));
-        System.out.print("\n");
-        IntStream.of(b_).forEach(n -> System.out.print(n + ", "));
-        return a_.length;
-    }
+        System.out.println(aList + "\n" + bList);
 
-    private void join(int[] result, int i, int j, int[] a, int[] b) {
-        a_ = new int[a.length - 1];
-        b_ = new int[b.length - 1];
-        for (int index = 0; index < a_.length; index++) {
-            if (index >= j) {
-                a_[index] = a[index + 1];
-                b_[index] = b[index + 1];
-            } else if (index != i) {
-                a_[index] = a[index];
-                b_[index] = b[index];
-            } else {
-                a_[index] = result[0];
-                b_[index] = result[1];
-            }
-        }
-    }
-
-    private int[] checkPair(int a1, int b1, int a2, int b2) {
-        if (a2 <= a1 && b2 >= a1) {
-            if (b1 >= b2) {
-                return new int[]{a2, b1};               // overlap
-            }
-            return new int[]{a2, b2};
-        }
-        if (a2 >= a1 && a2 <= b1) {
-            if (b2 >= b1) {
-                return new int[]{a1, b2};               // overlap
-            }
-            return new int[]{a1, b2};
-        }
-        if (a2 <= a1 && b2 >= b1) {
-            return new int[]{a2, b2};               // right includes left
-        }
-        if (a2 >= a1 && b2 <= b1) {
-            return new int[]{a1, b1};               // left includes right
-        } else {
-            return new int[]{};
-        }
+        return 0;
     }
 
 
@@ -89,5 +50,28 @@ public class Solution {
         run.solution(c, d);
         System.out.println("\n------");
         run.solution(e, f);
+    }
+
+    private Integer[] checkPair(Integer a1, Integer b1, Integer a2, Integer b2) {
+        if (a2 <= a1 && b2 >= a1) {
+            if (b1 >= b2) {
+                return new Integer[]{a2, b1};               // overlap
+            }
+            return new Integer[]{a2, b2};
+        }
+        if (a2 >= a1 && a2 <= b1) {
+            if (b2 >= b1) {
+                return new Integer[]{a1, b2};               // overlap
+            }
+            return new Integer[]{a1, b2};
+        }/*
+        if (a2 <= a1 && b2 >= b1) {
+            return new int[]{a2, b2};               // right includes left
+        }
+        if (a2 >= a1 && b2 <= b1) {
+            return new int[]{a1, b1};               // left includes right
+        */ else {
+            return new Integer[]{};
+        }
     }
 }
