@@ -1,4 +1,4 @@
-package practice.algorithms.implementation.sock_merchant;
+package practice.algorithms.implementation.sock.merchant;
 
 import java.time.Instant;
 import java.util.Arrays;

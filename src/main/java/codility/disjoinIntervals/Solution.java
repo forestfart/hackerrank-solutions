@@ -18,9 +18,8 @@ public class Solution {
                 return new Integer[]{aj, bi};
             }
             return new Integer[]{aj, bj};
-        } else {
-            return null;
         }
+        return null;
     }
 
     public int solution(int[] a, int[] b) {
