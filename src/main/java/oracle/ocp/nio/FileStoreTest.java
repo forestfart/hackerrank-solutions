@@ -1,14 +1,10 @@
 package oracle.ocp.nio;
 
-import sun.nio.fs.WindowsFileSystemProvider;
-
 import java.io.IOException;
 import java.nio.file.FileStore;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.spi.FileSystemProvider;
-import java.util.List;
-import java.util.Optional;
 
 import static java.nio.file.spi.FileSystemProvider.installedProviders;
 

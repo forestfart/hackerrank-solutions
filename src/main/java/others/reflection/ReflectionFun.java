@@ -1,5 +1,9 @@
 package others.reflection;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+
 public class ReflectionFun {
     
     public Integer sum(Integer a, Integer b) {
@@ -21,7 +25,7 @@ public class ReflectionFun {
             Object[] argList = new Object[2];
             argList[0] = new Integer(1);
             argList[1] = new Integer(2);
-            System.out.println("Result: " + method.invoke(new ReflectionFun(null, null, null, 0), argList));
+            System.out.println("Result: " + method.invoke(new ReflectionFun(), argList));
 
         } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
