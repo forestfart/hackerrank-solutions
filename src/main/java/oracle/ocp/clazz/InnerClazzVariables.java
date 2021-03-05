@@ -3,7 +3,7 @@ package oracle.ocp.clazz;
 public class InnerClazzVariables {
     private int x = 10;
 
-    class B {
+    static class B {
         private int x = 20;
 
         class C {
@@ -13,21 +13,21 @@ public class InnerClazzVariables {
                 System.out.println(x);                          // 30
                 System.out.println(this.x);                     // 30
                 System.out.println(B.this.x);                   // 20
-                System.out.println(InnerClazzVariables.this.x); // 10
+                System.out.println(this.x); // 10
             }
         }
         C c = new C();
     }
 
     void testMeth() {
-        InnerClazzVariables.B b = new InnerClazzVariables().new B();
+        B b = new B();
         B bc = new B();
         B.C c = new B().new C();
     }
 
     public static void main(String[] args) {
         InnerClazzVariables innerClazzVariables = new InnerClazzVariables();
-        InnerClazzVariables.B b = innerClazzVariables.new B();
+        InnerClazzVariables.B b = new B();
         InnerClazzVariables.B.C c = b.new C();
         c.allTheX();
     }
