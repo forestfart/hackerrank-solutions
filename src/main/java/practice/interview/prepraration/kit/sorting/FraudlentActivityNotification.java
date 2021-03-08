@@ -21,8 +21,6 @@ public class FraudlentActivityNotification {
                 elementToAdd = expenditure[i - (d - t)];
                 int arrayIndex = binarySearch(trailingList, 0, trailingList.size() - 1, elementToAdd);
                 trailingList.add(arrayIndex, elementToAdd);
-
-                System.out.println(trailingList.toString());
             }
             double average;
             size = trailingList.size();
@@ -39,29 +37,29 @@ public class FraudlentActivityNotification {
         return notifications;
     }
 
-    private static int binarySearch(List<Integer> list, int left, int right, int searchelement) {
+    private static int binarySearch(List<Integer> list, int left, int right, int searchElement) {
         if (right - left < 0) return 0;
         if (right - left == 0) {
-            if (list.get(left) < searchelement) {
+            if (list.get(left) < searchElement) {
                 return right + 1;
             } else {
                 return left;
             }
         }
         if (right - left == 1) {
-            if (searchelement < list.get(left)) {
+            if (searchElement < list.get(left)) {
                 return left;
             }
-            if (searchelement < list.get(right)) {
+            if (searchElement < list.get(right)) {
                 return right;
             }
             return right + 1;
         }
         int middle = (right + left) / 2;
-        if (list.get(middle) <= searchelement) {
-            return binarySearch(list, middle, right, searchelement);
+        if (list.get(middle) <= searchElement) {
+            return binarySearch(list, middle, right, searchElement);
         } else {
-            return binarySearch(list, left, middle, searchelement);
+            return binarySearch(list, left, middle, searchElement);
         }
     }
 
