@@ -8,7 +8,7 @@ class NewYearChaosSolutionTest extends Specification {
     @Unroll
     def 'testInput'(int[] input, String result) {
         expect:
-        result.equals(NewYearChaosSolution.minimumBribes(input))
+        result == NewYearChaosSolution.minimumBribes(input)
 
         where:
         input                    || result
