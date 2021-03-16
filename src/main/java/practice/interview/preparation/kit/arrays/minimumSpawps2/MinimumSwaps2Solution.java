@@ -1,7 +1,5 @@
 package practice.interview.preparation.kit.arrays.minimumSpawps2;
 
-import java.util.stream.IntStream;
-
 public class MinimumSwaps2Solution {
 
     // Complete the minimumSwaps function below.
