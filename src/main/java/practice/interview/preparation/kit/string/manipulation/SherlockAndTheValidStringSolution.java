@@ -7,8 +7,8 @@ public class SherlockAndTheValidStringSolution {
     // Complete the isValid function below.
 
     static String isValid(String s) {
-        char key;
-        int value;
+        Character key;
+        Integer value;
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
             key = s.charAt(i);
@@ -20,20 +20,17 @@ public class SherlockAndTheValidStringSolution {
             }
         }
         Map<Integer, Integer> aggregated = new HashMap<>();
-
-        for (Character character : map.keySet()) {
-            int occurrence = aggregated.get(map.get(character)) == null ? 0 : aggregated.get(map.get(character));
-            occurrence++;
-            aggregated.put(map.get(character), occurrence);
-        }
-        int i1, i2;
+        map.keySet().forEach(character -> {
+                    int occur = aggregated.get(map.get(character)) == null ? 0 : aggregated.get(map.get(character));
+                    aggregated.put(map.get(character), ++occur);
+                });
         if (aggregated.size() == 1) {
             return "YES";
         } else if (aggregated.size() == 2) {
             Iterator<Integer> iterator = aggregated.keySet().iterator();
-            i1 = iterator.next();
-            i2 = iterator.next();
-            if ((aggregated.get(i1) == 1 && Math.abs(i1 - i2) < 2) || (aggregated.get(i2) == 1 && Math.abs(i1 - i2) < 2)) {
+            int i1 = iterator.next();
+            int i2 = iterator.next();
+            if (Math.abs(i1 - i2) < 2 && (aggregated.get(i1) == 1 || (aggregated.get(i2) == 1))) {
                 return "YES";
             }
             if ((i1 == 1 && aggregated.get(i1) == 1) || (i2 == 1 && aggregated.get(i2) == 1)) {
