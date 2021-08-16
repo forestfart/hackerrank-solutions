@@ -1,11 +1,11 @@
 package oracle.ocp.optional;
 
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.*;
 
 public class OptionalTest {
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
 
         Optional<Integer> optionalInteger = Optional.of(9);
 
@@ -33,6 +33,28 @@ public class OptionalTest {
 
         optionalLocalDate.ifPresent(System.out::println);
 
+    }*/
+
+    static class Key {
+        public final int value;
+        public Key(int value) { this.value = value; }
+        public boolean equals(Key o) {
+            return this.value == o.value;
+        }
+        public int hashCode() { return 1; }
     }
 
+    public static void main(String args[]) {
+        Map<Key, String> map = new HashMap<>();
+        for (int i = 0; i < 10_000; ++i) {
+            map.put(new Key(i), "SomeValue" + i);
+        }
+        System.out.println(map.get(new Key(9999)));
+        System.out.println(process(new LinkedList<>()));
+    }
+
+    public static List<String> process(final List<String> items) {
+        items.add("Processed");
+        return items;
+    }
 }

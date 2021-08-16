@@ -1,9 +1,9 @@
-package practice.interview.preparation.kit.countingValleys
+package groovy.practice.interview.preparation.kit.countingValleys
 
 import spock.lang.Specification
 import spock.lang.Unroll;
 
-import static Solution.countingValleys;
+import static practice.interview.preparation.kit.countingValleys.Solution.countingValleys;
 
 class SolutionTest extends Specification {
 

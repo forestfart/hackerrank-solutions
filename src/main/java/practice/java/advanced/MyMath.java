@@ -1,6 +1,6 @@
 package practice.java.advanced;
 
-class MyMath {
+public class MyMath {
     boolean checker(PerformOperation p, int num) {
         return p.check(num);
     }

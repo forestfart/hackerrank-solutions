@@ -1,5 +1,6 @@
-package practice.java.advanced
+package groovy.practice.java.advanced
 
+import practice.java.advanced.MyMath
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll

@@ -1,6 +1,13 @@
 package practice.tutorials.thirty.days.of.code;
 
+import java.util.PriorityQueue;
+import java.util.Stack;
+
 public class TwoDArrays {
+
+    PriorityQueue<Character> queue = new PriorityQueue<>();
+    Stack<Character> stack = new Stack<>();
+
     public static int hourGlass(int[][] arr) {
         int max = -63, sum = 0;
         for (int i = 0; i < 4; i++) {

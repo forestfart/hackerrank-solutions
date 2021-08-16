@@ -1,4 +1,4 @@
-package practice.interview.preparation.kit.sorting
+package groovy.practice.interview.preparation.kit.sorting
 
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -6,7 +6,7 @@ import spock.lang.Unroll
 import java.time.Duration
 import java.time.Instant
 
-import static tools.InputFileReader.loadThreeDataInput
+import static groovy.tools.InputFileReader.loadThreeDataInput
 
 class FraudlentActivityNotificationTest extends Specification {
 

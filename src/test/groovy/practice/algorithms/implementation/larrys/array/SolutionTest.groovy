@@ -1,9 +1,9 @@
-package practice.algorithms.implementation.larrys.array
+package groovy.practice.algorithms.implementation.larrys.array
 
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static tools.InputFileReader.loadTwoDataInput
+import static groovy.tools.InputFileReader.loadTwoDataInput
 
 class SolutionTest extends Specification {
 
